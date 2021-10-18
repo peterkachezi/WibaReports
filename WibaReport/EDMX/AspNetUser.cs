@@ -40,9 +40,9 @@ namespace WibaReport.EDMX
         public int AccessFailedCount { get; set; }
         public string Discriminator { get; set; }
         public string FullName { get; set; }
+        public Nullable<bool> isActive { get; set; }
         public Nullable<int> ClinicId { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
-        public Nullable<bool> isActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }

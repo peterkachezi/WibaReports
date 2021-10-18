@@ -44,5 +44,6 @@ namespace WibaReport.DTOs
         public string Occupation { get; set; }
         public int ClinicId { get; set; }
         public string ClinicName { get; set; }
+        public string CreatedByName { get; set; }
     }
 }

@@ -78,9 +78,9 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="Discriminator" Type="nvarchar(max)" Nullable="false" />
           <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
           <Property Name="ClinicId" Type="int" />
           <Property Name="CreateDate" Type="datetime2" Precision="7" />
-          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="AspNetUserTokens">
           <Key>
@@ -584,60 +584,117 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WibaERPProdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WibaERPProdEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="WibaERPProdModel.C__EFMigrationsHistory" />
+          <EntitySet Name="AspNetRoleClaims" EntityType="WibaERPProdModel.AspNetRoleClaim" />
+          <EntitySet Name="AspNetRoles" EntityType="WibaERPProdModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="WibaERPProdModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="WibaERPProdModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="WibaERPProdModel.AspNetUser" />
+          <EntitySet Name="AspNetUserTokens" EntityType="WibaERPProdModel.AspNetUserToken" />
+          <EntitySet Name="Appointments" EntityType="WibaERPProdModel.Appointment" />
+          <EntitySet Name="ClaimDocuments" EntityType="WibaERPProdModel.ClaimDocument" />
+          <EntitySet Name="Claims" EntityType="WibaERPProdModel.Claim" />
+          <EntitySet Name="Clinics" EntityType="WibaERPProdModel.Clinic" />
+          <EntitySet Name="Counties" EntityType="WibaERPProdModel.County" />
+          <EntitySet Name="Employers" EntityType="WibaERPProdModel.Employer" />
+          <EntitySet Name="InsuranceProviders" EntityType="WibaERPProdModel.InsuranceProvider" />
+          <EntitySet Name="LastExpenseClaims" EntityType="WibaERPProdModel.LastExpenseClaim" />
+          <EntitySet Name="MedicalReports" EntityType="WibaERPProdModel.MedicalReport" />
+          <EntitySet Name="MemberEarnings" EntityType="WibaERPProdModel.MemberEarning" />
+          <EntitySet Name="Members" EntityType="WibaERPProdModel.Member" />
+          <EntitySet Name="OccupationalDiseaseClaims" EntityType="WibaERPProdModel.OccupationalDiseaseClaim" />
+          <EntitySet Name="OccupationalInjuryClaims" EntityType="WibaERPProdModel.OccupationalInjuryClaim" />
+          <EntitySet Name="OtherMemberClaimsToClaimMappings" EntityType="WibaERPProdModel.OtherMemberClaimsToClaimMapping" />
+          <EntitySet Name="OtherMembersClaims" EntityType="WibaERPProdModel.OtherMembersClaim" />
+          <EntitySet Name="Users" EntityType="WibaERPProdModel.User" />
+          <AssociationSet Name="FK_AspNetRoleClaims_AspNetRoles_RoleId" Association="WibaERPProdModel.FK_AspNetRoleClaims_AspNetRoles_RoleId">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetRoleClaim" EntitySet="AspNetRoleClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserClaims_AspNetUsers_UserId" Association="WibaERPProdModel.FK_AspNetUserClaims_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserLogins_AspNetUsers_UserId" Association="WibaERPProdModel.FK_AspNetUserLogins_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserTokens_AspNetUsers_UserId" Association="WibaERPProdModel.FK_AspNetUserTokens_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserToken" EntitySet="AspNetUserTokens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_Claims_ClaimId" Association="WibaERPProdModel.FK_Appointments_Claims_ClaimId">
+            <End Role="Claim" EntitySet="Claims" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClaimDocuments_Claims_ClaimId" Association="WibaERPProdModel.FK_ClaimDocuments_Claims_ClaimId">
+            <End Role="Claim" EntitySet="Claims" />
+            <End Role="ClaimDocument" EntitySet="ClaimDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Claims_Members_MemberId" Association="WibaERPProdModel.FK_Claims_Members_MemberId">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="Claim" EntitySet="Claims" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="WibaERPProdModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="C__EFMigrationsHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
           </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="AspNetRoleClaim">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetRole" Relationship="Self.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRoleClaims" ToRole="AspNetRoles" />
+          <NavigationProperty Name="AspNetRole" Relationship="WibaERPProdModel.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRoleClaim" ToRole="AspNetRole" />
         </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="NormalizedName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="ConcurrencyStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetRoleClaims" Relationship="Self.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRoles" ToRole="AspNetRoleClaims" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetRoleClaims" Relationship="WibaERPProdModel.FK_AspNetRoleClaims_AspNetRoles_RoleId" FromRole="AspNetRole" ToRole="AspNetRoleClaim" />
+          <NavigationProperty Name="AspNetUsers" Relationship="WibaERPProdModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUserClaim">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_AspNetUserClaims_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUser" Relationship="WibaERPProdModel.FK_AspNetUserClaims_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUserLogin">
           <Key>
             <PropertyRef Name="LoginProvider" />
             <PropertyRef Name="ProviderKey" />
           </Key>
-          <Property Name="LoginProvider" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProviderKey" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="ProviderDisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_AspNetUserLogins_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="WibaERPProdModel.FK_AspNetUserLogins_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="NormalizedUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
@@ -652,15 +709,15 @@
           <Property Name="LockoutEnd" Type="DateTimeOffset" Precision="7" />
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="Discriminator" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Discriminator" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
           <Property Name="ClinicId" Type="Int32" />
           <Property Name="CreateDate" Type="DateTime" Precision="7" />
-          <Property Name="isActive" Type="Boolean" />
-          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_AspNetUserClaims_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
-          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_AspNetUserLogins_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="AspNetUserTokens" Relationship="Self.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserTokens" />
-          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="WibaERPProdModel.FK_AspNetUserClaims_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="WibaERPProdModel.FK_AspNetUserLogins_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="AspNetUserTokens" Relationship="WibaERPProdModel.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserToken" />
+          <NavigationProperty Name="AspNetRoles" Relationship="WibaERPProdModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
         <EntityType Name="AspNetUserToken">
           <Key>
@@ -668,11 +725,11 @@
             <PropertyRef Name="LoginProvider" />
             <PropertyRef Name="Name" />
           </Key>
-          <Property Name="UserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LoginProvider" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
           <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUserTokens" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUser" Relationship="WibaERPProdModel.FK_AspNetUserTokens_AspNetUsers_UserId" FromRole="AspNetUserToken" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="Appointment">
           <Key>
@@ -690,7 +747,7 @@
           <Property Name="AppointmentStatus" Type="Int32" Nullable="false" />
           <Property Name="Doctor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimId" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Claim" Relationship="Self.FK_Appointments_Claims_ClaimId" FromRole="Appointments" ToRole="Claims" />
+          <NavigationProperty Name="Claim" Relationship="WibaERPProdModel.FK_Appointments_Claims_ClaimId" FromRole="Appointment" ToRole="Claim" />
         </EntityType>
         <EntityType Name="ClaimDocument">
           <Key>
@@ -703,9 +760,9 @@
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ClaimId" Type="Guid" Nullable="false" />
-          <Property Name="DocName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DocName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Extension" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Claim" Relationship="Self.FK_ClaimDocuments_Claims_ClaimId" FromRole="ClaimDocuments" ToRole="Claims" />
+          <NavigationProperty Name="Claim" Relationship="WibaERPProdModel.FK_ClaimDocuments_Claims_ClaimId" FromRole="ClaimDocument" ToRole="Claim" />
         </EntityType>
         <EntityType Name="Claim">
           <Key>
@@ -737,9 +794,9 @@
           <Property Name="HkRejectReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimNumber" Type="Int64" Nullable="false" />
           <Property Name="HospitalName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Appointments" Relationship="Self.FK_Appointments_Claims_ClaimId" FromRole="Claims" ToRole="Appointments" />
-          <NavigationProperty Name="ClaimDocuments" Relationship="Self.FK_ClaimDocuments_Claims_ClaimId" FromRole="Claims" ToRole="ClaimDocuments" />
-          <NavigationProperty Name="Member" Relationship="Self.FK_Claims_Members_MemberId" FromRole="Claims" ToRole="Members" />
+          <NavigationProperty Name="Appointments" Relationship="WibaERPProdModel.FK_Appointments_Claims_ClaimId" FromRole="Claim" ToRole="Appointment" />
+          <NavigationProperty Name="ClaimDocuments" Relationship="WibaERPProdModel.FK_ClaimDocuments_Claims_ClaimId" FromRole="Claim" ToRole="ClaimDocument" />
+          <NavigationProperty Name="Member" Relationship="WibaERPProdModel.FK_Claims_Members_MemberId" FromRole="Claim" ToRole="Member" />
         </EntityType>
         <EntityType Name="Clinic">
           <Key>
@@ -763,7 +820,7 @@
           </Key>
           <Property Name="PKID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="Int64" />
-          <Property Name="CountyName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountyName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="FormerProvince" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RegionID" Type="Int64" />
           <Property Name="IsActive" Type="Boolean" />
@@ -779,7 +836,7 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="FullName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="RegistrationNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FullAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Industry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -797,7 +854,7 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="FullName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="FullAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RegistrationNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -854,13 +911,13 @@
           <Property Name="UpdatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="UpdatedAt" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="CashWage" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="ValueOfRations" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="valueOfHousing" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="valueOfFuel" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Allowances" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="OtherRenumerations" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="TotalEarnings" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CashWage" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ValueOfRations" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="valueOfHousing" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="valueOfFuel" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Allowances" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="OtherRenumerations" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalEarnings" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="HasResumedWork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateOfResumption" Type="DateTime" Precision="7" />
           <Property Name="LengthOfService" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -897,7 +954,7 @@
           <Property Name="PIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EmployerId" Type="Guid" Nullable="false" />
           <Property Name="RoldeId" Type="Int32" />
-          <NavigationProperty Name="Claims" Relationship="Self.FK_Claims_Members_MemberId" FromRole="Members" ToRole="Claims" />
+          <NavigationProperty Name="Claims" Relationship="WibaERPProdModel.FK_Claims_Members_MemberId" FromRole="Member" ToRole="Claim" />
         </EntityType>
         <EntityType Name="OccupationalDiseaseClaim">
           <Key>
@@ -968,177 +1025,120 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Username" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="Int32" Nullable="false" />
           <Property Name="PhysicalAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="EmailAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="PostalAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="EmployerId" Type="Guid" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_AspNetRoleClaims_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="1">
+          <End Type="WibaERPProdModel.AspNetRole" Role="AspNetRole" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetRoleClaims" Type="Self.AspNetRoleClaim" Multiplicity="*" />
+          <End Type="WibaERPProdModel.AspNetRoleClaim" Role="AspNetRoleClaim" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AspNetRoles">
+            <Principal Role="AspNetRole">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AspNetRoleClaims">
+            <Dependent Role="AspNetRoleClaim">
               <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AspNetUserClaims_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+          <End Type="WibaERPProdModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+          <End Type="WibaERPProdModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
+            <Principal Role="AspNetUser">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AspNetUserClaims">
+            <Dependent Role="AspNetUserClaim">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AspNetUserLogins_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+          <End Type="WibaERPProdModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+          <End Type="WibaERPProdModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
+            <Principal Role="AspNetUser">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AspNetUserLogins">
+            <Dependent Role="AspNetUserLogin">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AspNetUserTokens_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+          <End Type="WibaERPProdModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserTokens" Type="Self.AspNetUserToken" Multiplicity="*" />
+          <End Type="WibaERPProdModel.AspNetUserToken" Role="AspNetUserToken" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
+            <Principal Role="AspNetUser">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AspNetUserTokens">
+            <Dependent Role="AspNetUserToken">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Appointments_Claims_ClaimId">
-          <End Role="Claims" Type="Self.Claim" Multiplicity="1">
+          <End Type="WibaERPProdModel.Claim" Role="Claim" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Appointments" Type="Self.Appointment" Multiplicity="*" />
+          <End Type="WibaERPProdModel.Appointment" Role="Appointment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Claims">
+            <Principal Role="Claim">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Appointments">
+            <Dependent Role="Appointment">
               <PropertyRef Name="ClaimId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ClaimDocuments_Claims_ClaimId">
-          <End Role="Claims" Type="Self.Claim" Multiplicity="1">
+          <End Type="WibaERPProdModel.Claim" Role="Claim" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="ClaimDocuments" Type="Self.ClaimDocument" Multiplicity="*" />
+          <End Type="WibaERPProdModel.ClaimDocument" Role="ClaimDocument" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Claims">
+            <Principal Role="Claim">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ClaimDocuments">
+            <Dependent Role="ClaimDocument">
               <PropertyRef Name="ClaimId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Claims_Members_MemberId">
-          <End Role="Members" Type="Self.Member" Multiplicity="1">
+          <End Type="WibaERPProdModel.Member" Role="Member" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Claims" Type="Self.Claim" Multiplicity="*" />
+          <End Type="WibaERPProdModel.Claim" Role="Claim" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Members">
+            <Principal Role="Member">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Claims">
+            <Dependent Role="Claim">
               <PropertyRef Name="MemberId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="AspNetUserRoles">
-          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+          <End Type="WibaERPProdModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="WibaERPProdModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="WibaERPProdEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__EFMigrationsHistory" EntityType="Self.C__EFMigrationsHistory" />
-          <EntitySet Name="AspNetRoleClaims" EntityType="Self.AspNetRoleClaim" />
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
-          <EntitySet Name="AspNetUserTokens" EntityType="Self.AspNetUserToken" />
-          <EntitySet Name="Appointments" EntityType="Self.Appointment" />
-          <EntitySet Name="ClaimDocuments" EntityType="Self.ClaimDocument" />
-          <EntitySet Name="Claims" EntityType="Self.Claim" />
-          <EntitySet Name="Clinics" EntityType="Self.Clinic" />
-          <EntitySet Name="Counties" EntityType="Self.County" />
-          <EntitySet Name="Employers" EntityType="Self.Employer" />
-          <EntitySet Name="InsuranceProviders" EntityType="Self.InsuranceProvider" />
-          <EntitySet Name="LastExpenseClaims" EntityType="Self.LastExpenseClaim" />
-          <EntitySet Name="MedicalReports" EntityType="Self.MedicalReport" />
-          <EntitySet Name="MemberEarnings" EntityType="Self.MemberEarning" />
-          <EntitySet Name="Members" EntityType="Self.Member" />
-          <EntitySet Name="OccupationalDiseaseClaims" EntityType="Self.OccupationalDiseaseClaim" />
-          <EntitySet Name="OccupationalInjuryClaims" EntityType="Self.OccupationalInjuryClaim" />
-          <EntitySet Name="OtherMemberClaimsToClaimMappings" EntityType="Self.OtherMemberClaimsToClaimMapping" />
-          <EntitySet Name="OtherMembersClaims" EntityType="Self.OtherMembersClaim" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_AspNetRoleClaims_AspNetRoles_RoleId" Association="Self.FK_AspNetRoleClaims_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetRoleClaims" EntitySet="AspNetRoleClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AspNetUserClaims_AspNetUsers_UserId" Association="Self.FK_AspNetUserClaims_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AspNetUserLogins_AspNetUsers_UserId" Association="Self.FK_AspNetUserLogins_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AspNetUserTokens_AspNetUsers_UserId" Association="Self.FK_AspNetUserTokens_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserTokens" EntitySet="AspNetUserTokens" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Appointments_Claims_ClaimId" Association="Self.FK_Appointments_Claims_ClaimId">
-            <End Role="Claims" EntitySet="Claims" />
-            <End Role="Appointments" EntitySet="Appointments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClaimDocuments_Claims_ClaimId" Association="Self.FK_ClaimDocuments_Claims_ClaimId">
-            <End Role="Claims" EntitySet="Claims" />
-            <End Role="ClaimDocuments" EntitySet="ClaimDocuments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Claims_Members_MemberId" Association="Self.FK_Claims_Members_MemberId">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="Claims" EntitySet="Claims" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1147,408 +1147,408 @@
           <EntitySetMapping Name="C__EFMigrationsHistory">
             <EntityTypeMapping TypeName="WibaERPProdModel.C__EFMigrationsHistory">
               <MappingFragment StoreEntitySet="__EFMigrationsHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoleClaims">
             <EntityTypeMapping TypeName="WibaERPProdModel.AspNetRoleClaim">
               <MappingFragment StoreEntitySet="AspNetRoleClaims">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
                 <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="WibaERPProdModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="NormalizedName" ColumnName="NormalizedName" />
                 <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+                <ScalarProperty Name="NormalizedName" ColumnName="NormalizedName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
             <EntityTypeMapping TypeName="WibaERPProdModel.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
                 <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
             <EntityTypeMapping TypeName="WibaERPProdModel.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-                <ScalarProperty Name="ProviderDisplayName" ColumnName="ProviderDisplayName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderDisplayName" ColumnName="ProviderDisplayName" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="WibaERPProdModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="NormalizedUserName" ColumnName="NormalizedUserName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="NormalizedEmail" ColumnName="NormalizedEmail" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="LockoutEnd" ColumnName="LockoutEnd" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="ClinicId" ColumnName="ClinicId" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ClinicId" ColumnName="ClinicId" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEnd" ColumnName="LockoutEnd" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="NormalizedEmail" ColumnName="NormalizedEmail" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NormalizedUserName" ColumnName="NormalizedUserName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserTokens">
             <EntityTypeMapping TypeName="WibaERPProdModel.AspNetUserToken">
               <MappingFragment StoreEntitySet="AspNetUserTokens">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Appointments">
             <EntityTypeMapping TypeName="WibaERPProdModel.Appointment">
               <MappingFragment StoreEntitySet="Appointments">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="ClinicId" ColumnName="ClinicId" />
-                <ScalarProperty Name="BookedDate" ColumnName="BookedDate" />
-                <ScalarProperty Name="BookedTime" ColumnName="BookedTime" />
-                <ScalarProperty Name="AppointmentStatus" ColumnName="AppointmentStatus" />
-                <ScalarProperty Name="Doctor" ColumnName="Doctor" />
                 <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+                <ScalarProperty Name="Doctor" ColumnName="Doctor" />
+                <ScalarProperty Name="AppointmentStatus" ColumnName="AppointmentStatus" />
+                <ScalarProperty Name="BookedTime" ColumnName="BookedTime" />
+                <ScalarProperty Name="BookedDate" ColumnName="BookedDate" />
+                <ScalarProperty Name="ClinicId" ColumnName="ClinicId" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ClaimDocuments">
             <EntityTypeMapping TypeName="WibaERPProdModel.ClaimDocument">
               <MappingFragment StoreEntitySet="ClaimDocuments">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
-                <ScalarProperty Name="DocName" ColumnName="DocName" />
                 <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="DocName" ColumnName="DocName" />
+                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Claims">
             <EntityTypeMapping TypeName="WibaERPProdModel.Claim">
               <MappingFragment StoreEntitySet="Claims">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-                <ScalarProperty Name="ClaimSourceId" ColumnName="ClaimSourceId" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="LenghtOfService" ColumnName="LenghtOfService" />
-                <ScalarProperty Name="EmployeeDuties" ColumnName="EmployeeDuties" />
-                <ScalarProperty Name="IsApprovedByHk" ColumnName="IsApprovedByHk" />
-                <ScalarProperty Name="IsApprovedByDosh" ColumnName="IsApprovedByDosh" />
-                <ScalarProperty Name="IsApprovedByMakl" ColumnName="IsApprovedByMakl" />
-                <ScalarProperty Name="IsApprovedByNhif" ColumnName="IsApprovedByNhif" />
-                <ScalarProperty Name="IsApprovedByEmployer" ColumnName="IsApprovedByEmployer" />
-                <ScalarProperty Name="IsApprovedByHospital" ColumnName="IsApprovedByHospital" />
-                <ScalarProperty Name="HkComment" ColumnName="HkComment" />
-                <ScalarProperty Name="DoshComment" ColumnName="DoshComment" />
-                <ScalarProperty Name="MaklComment" ColumnName="MaklComment" />
-                <ScalarProperty Name="NhifComment" ColumnName="NhifComment" />
-                <ScalarProperty Name="EmployerComment" ColumnName="EmployerComment" />
-                <ScalarProperty Name="EmployerRejectReason" ColumnName="EmployerRejectReason" />
-                <ScalarProperty Name="HkRejectReason" ColumnName="HkRejectReason" />
-                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
                 <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+                <ScalarProperty Name="ClaimNumber" ColumnName="ClaimNumber" />
+                <ScalarProperty Name="HkRejectReason" ColumnName="HkRejectReason" />
+                <ScalarProperty Name="EmployerRejectReason" ColumnName="EmployerRejectReason" />
+                <ScalarProperty Name="EmployerComment" ColumnName="EmployerComment" />
+                <ScalarProperty Name="NhifComment" ColumnName="NhifComment" />
+                <ScalarProperty Name="MaklComment" ColumnName="MaklComment" />
+                <ScalarProperty Name="DoshComment" ColumnName="DoshComment" />
+                <ScalarProperty Name="HkComment" ColumnName="HkComment" />
+                <ScalarProperty Name="IsApprovedByHospital" ColumnName="IsApprovedByHospital" />
+                <ScalarProperty Name="IsApprovedByEmployer" ColumnName="IsApprovedByEmployer" />
+                <ScalarProperty Name="IsApprovedByNhif" ColumnName="IsApprovedByNhif" />
+                <ScalarProperty Name="IsApprovedByMakl" ColumnName="IsApprovedByMakl" />
+                <ScalarProperty Name="IsApprovedByDosh" ColumnName="IsApprovedByDosh" />
+                <ScalarProperty Name="IsApprovedByHk" ColumnName="IsApprovedByHk" />
+                <ScalarProperty Name="EmployeeDuties" ColumnName="EmployeeDuties" />
+                <ScalarProperty Name="LenghtOfService" ColumnName="LenghtOfService" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimSourceId" ColumnName="ClaimSourceId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Clinics">
             <EntityTypeMapping TypeName="WibaERPProdModel.Clinic">
               <MappingFragment StoreEntitySet="Clinics">
-                <ScalarProperty Name="Pkid" ColumnName="Pkid" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Region" ColumnName="Region" />
-                <ScalarProperty Name="County" ColumnName="County" />
-                <ScalarProperty Name="SubCounty" ColumnName="SubCounty" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
-                <ScalarProperty Name="OpeningHours" ColumnName="OpeningHours" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="OpeningHours" ColumnName="OpeningHours" />
+                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SubCounty" ColumnName="SubCounty" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Pkid" ColumnName="Pkid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Counties">
             <EntityTypeMapping TypeName="WibaERPProdModel.County">
               <MappingFragment StoreEntitySet="Counties">
-                <ScalarProperty Name="PKID" ColumnName="PKID" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
-                <ScalarProperty Name="FormerProvince" ColumnName="FormerProvince" />
-                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CountyCoordinates" ColumnName="CountyCoordinates" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+                <ScalarProperty Name="FormerProvince" ColumnName="FormerProvince" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="PKID" ColumnName="PKID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employers">
             <EntityTypeMapping TypeName="WibaERPProdModel.Employer">
               <MappingFragment StoreEntitySet="Employers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
-                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
-                <ScalarProperty Name="Industry" ColumnName="Industry" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="InsuranceId" ColumnName="InsuranceId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Industry" ColumnName="Industry" />
+                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InsuranceProviders">
             <EntityTypeMapping TypeName="WibaERPProdModel.InsuranceProvider">
               <MappingFragment StoreEntitySet="InsuranceProviders">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
-                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LastExpenseClaims">
             <EntityTypeMapping TypeName="WibaERPProdModel.LastExpenseClaim">
               <MappingFragment StoreEntitySet="LastExpenseClaims">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="DateOfDeath" ColumnName="DateOfDeath" />
-                <ScalarProperty Name="BurialDate" ColumnName="BurialDate" />
                 <ScalarProperty Name="CauseOfDeathDescription" ColumnName="CauseOfDeathDescription" />
+                <ScalarProperty Name="BurialDate" ColumnName="BurialDate" />
+                <ScalarProperty Name="DateOfDeath" ColumnName="DateOfDeath" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MedicalReports">
             <EntityTypeMapping TypeName="WibaERPProdModel.MedicalReport">
               <MappingFragment StoreEntitySet="MedicalReports">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
-                <ScalarProperty Name="TypeOfInjury" ColumnName="TypeOfInjury" />
-                <ScalarProperty Name="DateOfAdmission" ColumnName="DateOfAdmission" />
-                <ScalarProperty Name="IsDischarged" ColumnName="IsDischarged" />
-                <ScalarProperty Name="OccupationalDisease" ColumnName="OccupationalDisease" />
-                <ScalarProperty Name="InpatientNumber" ColumnName="InpatientNumber" />
-                <ScalarProperty Name="IspermanentIncapacity" ColumnName="IspermanentIncapacity" />
-                <ScalarProperty Name="PermanentIncapacityDetails" ColumnName="PermanentIncapacityDetails" />
-                <ScalarProperty Name="PercentageOfpermanentIncapacity" ColumnName="PercentageOfpermanentIncapacity" />
-                <ScalarProperty Name="IsfurtherExaminationRequired" ColumnName="IsfurtherExaminationRequired" />
-                <ScalarProperty Name="Examination" ColumnName="Examination" />
-                <ScalarProperty Name="DateOfExamination" ColumnName="DateOfExamination" />
-                <ScalarProperty Name="medicalPractitioner" ColumnName="medicalPractitioner" />
-                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
                 <ScalarProperty Name="TemporaryIncapacity" ColumnName="TemporaryIncapacity" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+                <ScalarProperty Name="medicalPractitioner" ColumnName="medicalPractitioner" />
+                <ScalarProperty Name="DateOfExamination" ColumnName="DateOfExamination" />
+                <ScalarProperty Name="Examination" ColumnName="Examination" />
+                <ScalarProperty Name="IsfurtherExaminationRequired" ColumnName="IsfurtherExaminationRequired" />
+                <ScalarProperty Name="PercentageOfpermanentIncapacity" ColumnName="PercentageOfpermanentIncapacity" />
+                <ScalarProperty Name="PermanentIncapacityDetails" ColumnName="PermanentIncapacityDetails" />
+                <ScalarProperty Name="IspermanentIncapacity" ColumnName="IspermanentIncapacity" />
+                <ScalarProperty Name="InpatientNumber" ColumnName="InpatientNumber" />
+                <ScalarProperty Name="OccupationalDisease" ColumnName="OccupationalDisease" />
+                <ScalarProperty Name="IsDischarged" ColumnName="IsDischarged" />
+                <ScalarProperty Name="DateOfAdmission" ColumnName="DateOfAdmission" />
+                <ScalarProperty Name="TypeOfInjury" ColumnName="TypeOfInjury" />
+                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MemberEarnings">
             <EntityTypeMapping TypeName="WibaERPProdModel.MemberEarning">
               <MappingFragment StoreEntitySet="MemberEarnings">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="CashWage" ColumnName="CashWage" />
-                <ScalarProperty Name="ValueOfRations" ColumnName="ValueOfRations" />
-                <ScalarProperty Name="valueOfHousing" ColumnName="valueOfHousing" />
-                <ScalarProperty Name="valueOfFuel" ColumnName="valueOfFuel" />
-                <ScalarProperty Name="Allowances" ColumnName="Allowances" />
-                <ScalarProperty Name="OtherRenumerations" ColumnName="OtherRenumerations" />
-                <ScalarProperty Name="TotalEarnings" ColumnName="TotalEarnings" />
-                <ScalarProperty Name="HasResumedWork" ColumnName="HasResumedWork" />
-                <ScalarProperty Name="DateOfResumption" ColumnName="DateOfResumption" />
-                <ScalarProperty Name="LengthOfService" ColumnName="LengthOfService" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="LengthOfService" ColumnName="LengthOfService" />
+                <ScalarProperty Name="DateOfResumption" ColumnName="DateOfResumption" />
+                <ScalarProperty Name="HasResumedWork" ColumnName="HasResumedWork" />
+                <ScalarProperty Name="TotalEarnings" ColumnName="TotalEarnings" />
+                <ScalarProperty Name="OtherRenumerations" ColumnName="OtherRenumerations" />
+                <ScalarProperty Name="Allowances" ColumnName="Allowances" />
+                <ScalarProperty Name="valueOfFuel" ColumnName="valueOfFuel" />
+                <ScalarProperty Name="valueOfHousing" ColumnName="valueOfHousing" />
+                <ScalarProperty Name="ValueOfRations" ColumnName="ValueOfRations" />
+                <ScalarProperty Name="CashWage" ColumnName="CashWage" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="WibaERPProdModel.Member">
               <MappingFragment StoreEntitySet="Members">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="MemberNumber" ColumnName="MemberNumber" />
-                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
-                <ScalarProperty Name="NhifNumber" ColumnName="NhifNumber" />
-                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
-                <ScalarProperty Name="CountyOfResident" ColumnName="CountyOfResident" />
-                <ScalarProperty Name="SubCountyOfResident" ColumnName="SubCountyOfResident" />
-                <ScalarProperty Name="IsPrincipal" ColumnName="IsPrincipal" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="PIN" ColumnName="PIN" />
-                <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
                 <ScalarProperty Name="RoldeId" ColumnName="RoldeId" />
+                <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsPrincipal" ColumnName="IsPrincipal" />
+                <ScalarProperty Name="SubCountyOfResident" ColumnName="SubCountyOfResident" />
+                <ScalarProperty Name="CountyOfResident" ColumnName="CountyOfResident" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Relationship" ColumnName="Relationship" />
+                <ScalarProperty Name="NhifNumber" ColumnName="NhifNumber" />
+                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+                <ScalarProperty Name="MemberNumber" ColumnName="MemberNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OccupationalDiseaseClaims">
             <EntityTypeMapping TypeName="WibaERPProdModel.OccupationalDiseaseClaim">
               <MappingFragment StoreEntitySet="OccupationalDiseaseClaims">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="DateOfDiagnosis" ColumnName="DateOfDiagnosis" />
-                <ScalarProperty Name="MedicalPractioner" ColumnName="MedicalPractioner" />
-                <ScalarProperty Name="DateEmployerNotified" ColumnName="DateEmployerNotified" />
                 <ScalarProperty Name="CauseOfDisease" ColumnName="CauseOfDisease" />
+                <ScalarProperty Name="DateEmployerNotified" ColumnName="DateEmployerNotified" />
+                <ScalarProperty Name="MedicalPractioner" ColumnName="MedicalPractioner" />
+                <ScalarProperty Name="DateOfDiagnosis" ColumnName="DateOfDiagnosis" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OccupationalInjuryClaims">
             <EntityTypeMapping TypeName="WibaERPProdModel.OccupationalInjuryClaim">
               <MappingFragment StoreEntitySet="OccupationalInjuryClaims">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="DateOfAccident" ColumnName="DateOfAccident" />
-                <ScalarProperty Name="TimeOfAccident" ColumnName="TimeOfAccident" />
-                <ScalarProperty Name="HasResumedWork" ColumnName="HasResumedWork" />
-                <ScalarProperty Name="DateOfResumption" ColumnName="DateOfResumption" />
-                <ScalarProperty Name="PlaceOfAccident" ColumnName="PlaceOfAccident" />
-                <ScalarProperty Name="CauseOfInjury" ColumnName="CauseOfInjury" />
-                <ScalarProperty Name="TypeOfInjury" ColumnName="TypeOfInjury" />
                 <ScalarProperty Name="PartOfBodyInjured" ColumnName="PartOfBodyInjured" />
+                <ScalarProperty Name="TypeOfInjury" ColumnName="TypeOfInjury" />
+                <ScalarProperty Name="CauseOfInjury" ColumnName="CauseOfInjury" />
+                <ScalarProperty Name="PlaceOfAccident" ColumnName="PlaceOfAccident" />
+                <ScalarProperty Name="DateOfResumption" ColumnName="DateOfResumption" />
+                <ScalarProperty Name="HasResumedWork" ColumnName="HasResumedWork" />
+                <ScalarProperty Name="TimeOfAccident" ColumnName="TimeOfAccident" />
+                <ScalarProperty Name="DateOfAccident" ColumnName="DateOfAccident" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OtherMemberClaimsToClaimMappings">
             <EntityTypeMapping TypeName="WibaERPProdModel.OtherMemberClaimsToClaimMapping">
               <MappingFragment StoreEntitySet="OtherMemberClaimsToClaimMappings">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
                 <ScalarProperty Name="OtherMemberClaimsId" ColumnName="OtherMemberClaimsId" />
+                <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OtherMembersClaims">
             <EntityTypeMapping TypeName="WibaERPProdModel.OtherMembersClaim">
               <MappingFragment StoreEntitySet="OtherMembersClaims">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="MemberNumber" ColumnName="MemberNumber" />
                 <ScalarProperty Name="SubmittedById" ColumnName="SubmittedById" />
+                <ScalarProperty Name="MemberNumber" ColumnName="MemberNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="UpdatedAt" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="WibaERPProdModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="PostalAddress" ColumnName="PostalAddress" />
-                <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
+                <ScalarProperty Name="PostalAddress" ColumnName="PostalAddress" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="WibaERPProdModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetRoles">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-            <EndProperty Name="AspNetUsers">
+            <EndProperty Name="AspNetUser">
               <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

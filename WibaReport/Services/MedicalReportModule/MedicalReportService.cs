@@ -115,6 +115,8 @@ namespace WibaReport.Services.MedicalReportModule
 
                               join c in context.Clinics on a.ClinicId equals c.Pkid
 
+                              join u in context.AspNetUsers on r.CreatedBy equals u.Id
+
                               select new MedicalReportDTO
                               {
                                   Id = r.Id,
@@ -178,6 +180,8 @@ namespace WibaReport.Services.MedicalReportModule
                                   ClinicId = a.ClinicId,
 
                                   ClinicName = c.Name,
+
+                                  CreatedByName = u.FullName,
                               });
 
                 return report.ToList();

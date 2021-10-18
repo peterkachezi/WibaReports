@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using CrystalDecisions.CrystalReports.Engine;
 using WibaReport.DataSet;
@@ -24,6 +22,8 @@ namespace WibaReport.Controllers
         {
             try
             {
+                var Title = "Dr -";
+
                 ReportDocument rd = new ReportDocument();
 
                 rd.Load(Path.Combine(Server.MapPath("~/Reports"), "MedicalReport.rpt"));
@@ -70,7 +70,9 @@ namespace WibaReport.Controllers
 
                     item.TemporaryIncapacity,
 
-                    item.DateOfExamination.ToShortDateString()
+                    item.DateOfExamination.ToShortDateString(),
+
+                    Title +" "+ item.CreatedByName
 
                    );
                 }

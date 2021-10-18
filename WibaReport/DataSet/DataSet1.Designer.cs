@@ -799,6 +799,8 @@ namespace WibaReport.DataSet {
             
             private global::System.Data.DataColumn columnDateOfExamination;
             
+            private global::System.Data.DataColumn columnCreatedByName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public MedicalReportDataTable() {
@@ -962,6 +964,14 @@ namespace WibaReport.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn CreatedByNameColumn {
+                get {
+                    return this.columnCreatedByName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1013,7 +1023,8 @@ namespace WibaReport.DataSet {
                         string HospitalName, 
                         string Examination, 
                         string TemporaryIncapacity, 
-                        string DateOfExamination) {
+                        string DateOfExamination, 
+                        string CreatedByName) {
                 MedicalReportRow rowMedicalReportRow = ((MedicalReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FullName,
@@ -1031,7 +1042,8 @@ namespace WibaReport.DataSet {
                         HospitalName,
                         Examination,
                         TemporaryIncapacity,
-                        DateOfExamination};
+                        DateOfExamination,
+                        CreatedByName};
                 rowMedicalReportRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowMedicalReportRow);
                 return rowMedicalReportRow;
@@ -1070,6 +1082,7 @@ namespace WibaReport.DataSet {
                 this.columnExamination = base.Columns["Examination"];
                 this.columnTemporaryIncapacity = base.Columns["TemporaryIncapacity"];
                 this.columnDateOfExamination = base.Columns["DateOfExamination"];
+                this.columnCreatedByName = base.Columns["CreatedByName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1107,6 +1120,8 @@ namespace WibaReport.DataSet {
                 base.Columns.Add(this.columnTemporaryIncapacity);
                 this.columnDateOfExamination = new global::System.Data.DataColumn("DateOfExamination", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDateOfExamination);
+                this.columnCreatedByName = new global::System.Data.DataColumn("CreatedByName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCreatedByName);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1880,6 +1895,22 @@ namespace WibaReport.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string CreatedByName {
+                get {
+                    try {
+                        return ((string)(this[this.tableMedicalReport.CreatedByNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CreatedByName\' in table \'MedicalReport\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMedicalReport.CreatedByNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsFullNameNull() {
                 return this.IsNull(this.tableMedicalReport.FullNameColumn);
             }
@@ -2068,6 +2099,18 @@ namespace WibaReport.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetDateOfExaminationNull() {
                 this[this.tableMedicalReport.DateOfExaminationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsCreatedByNameNull() {
+                return this.IsNull(this.tableMedicalReport.CreatedByNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetCreatedByNameNull() {
+                this[this.tableMedicalReport.CreatedByNameColumn] = global::System.Convert.DBNull;
             }
         }
         
